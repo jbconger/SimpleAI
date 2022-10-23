@@ -30,14 +30,4 @@ public class EnemyController : MonoBehaviour
         if (collision.gameObject.tag == "Player")
             target = null;
 	}
-
-    public void Wait(float time)
-	{
-        StartCoroutine(WaitFor(time));
-	}
-
-    private IEnumerator WaitFor(float time)
-	{
-        yield return new WaitForSeconds(time);
-	}
 }
