@@ -13,10 +13,13 @@ public class EnemyController : MonoBehaviour
     [HideInInspector] public Rigidbody2D rb2D;
     [HideInInspector] public GameObject target;
 
+    [HideInInspector] public Vector3 startPosition;
+
 	private void Awake()
 	{
         rb2D = GetComponent<Rigidbody2D>();
         detectionCollider = GetComponent<CircleCollider2D>();
+        startPosition = transform.position;
 	}
 
 	private void OnTriggerEnter2D(Collider2D collision)
