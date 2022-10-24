@@ -4,34 +4,43 @@ using UnityEngine;
 
 public class WanderState : State
 {
+	private float wanderDuration = 1.5f;
+	private float wanderStartTime = 0.0f;
+	private Vector3 targetPosition;
+
     public WanderState(EnemyController enemy) : base(enemy)
-	{ }
+	{
+		//targetPosition = new Vector3(enemy.startPosition.x, enemy.startPosition.y - 5);
+	}
 
 	public override State RunCurrentState()
 	{
-		Wander();
-		return this;
+		if (enemy.target != null)
+		{
+			return new RangedAttackState(enemy);
+		}
+		else
+		{
+			Wander();
+			return this;
+		}
 	}
 
 	private void Wander()
 	{
-		Vector3 targetPosition;
-		float step = enemy.moveSpeed * 0.5f * Time.deltaTime;
-		
-		if (Vector3.Distance(enemy.transform.position, enemy.startPosition) < 5f)
+		float step = enemy.moveSpeed * 0.75f * Time.deltaTime;
+
+		if (Time.time > wanderStartTime + wanderDuration && Vector3.Distance(enemy.transform.position, enemy.startPosition) < 5f)
 		{
 			Vector2 randomDir = Random.insideUnitCircle.normalized;
 			targetPosition = randomDir * 3f;
-
+			wanderStartTime = Time.time;
 		}
-		else
+		else if (Vector3.Distance(enemy.transform.position, enemy.startPosition) > 5f)
 		{
 			targetPosition = enemy.startPosition;
 		}
 
-		while (enemy.transform.position != targetPosition)
-		{
-			Vector3.MoveTowards(enemy.transform.position, targetPosition, step);
-		}
+		enemy.transform.position = Vector3.MoveTowards(enemy.transform.position, targetPosition, step);
 	}
 }
