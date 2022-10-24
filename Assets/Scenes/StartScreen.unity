@@ -3857,10 +3857,10 @@ MonoBehaviour:
 
     Font: Tiny Worlds
 
-    SFX: Alessandro Fama
+    SFX: Alessandro Fama, Zero Rare
 
-    BGM: Florian
-    Stracker'
+    BGM:
+    Florian Stracker'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 617b065efacca88438ad84e1d8b55796, type: 2}
   m_sharedMaterial: {fileID: 6108370111983552199, guid: 617b065efacca88438ad84e1d8b55796, type: 2}

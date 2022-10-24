@@ -16,12 +16,6 @@ public class Projectile : MonoBehaviour
         audioSource.Play();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
 	private void OnCollisionEnter2D(Collision2D collision)
 	{
         audioSource.clip = hitSound;
